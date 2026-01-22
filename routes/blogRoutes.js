@@ -26,8 +26,9 @@ router.post('/', async (req, res) => {
 // get blogs(gets all the blogs)
 router.get('/', async (req, res) => {
     try {
-        const blogs = await Blog.find().sort({createdAt: -1});
-        res.json(blogs);
+        const blog = await Blog.find().sort({createdAt: -1});
+
+        res.json(blog);
     } catch (error) {
         res.status(500).json({error: error.message});
     }
@@ -36,7 +37,7 @@ router.get('/', async (req, res) => {
 //get blogs by id
 router.get('/:id', async (req, res) => {
     try {
-        const blogs = await Blog.findById(req.params.id);
+        const blog = await Blog.findById(req.params.id);
 
         if(!blog) {
             return res.status(404).json({error: "Blog not found"});
